@@ -1,13 +1,12 @@
-import { object, string } from 'yup';
+import { number, object, string } from 'yup';
 
-let createPersonSchema = object({
-  firstName: string().required().trim(),
-  lastName: string().required().trim()
+let createUserSchema = object({
+  id : number(),
+  email: string().required().trim(),
+  password: string().required().trim(),
+  role: string().required().trim()
 });
 
-let updatePersonSchema = object({
-  firstName: string().trim(),
-  lastName: string().trim()
-});
 
-export { createPersonSchema, updatePersonSchema };
+
+export { createUserSchema };

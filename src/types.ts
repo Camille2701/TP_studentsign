@@ -1,11 +1,25 @@
-type Person = {
+type users = {
   id: number,
-  firstName: string
-  lastName: string
+  email: string
+  password: string
+  role: string
+}
+
+type Course = {
+  id: number,
+  title: string;
+  date: Date;
+}
+
+type StudentCourses = {
+  registeredat: Date;
+  signedAt: Date;
 }
 
 type Data = {
-  persons: Person[]
+  courses: Course[],
+  users: users[]
 }
 
-export { Person, Data }
+
+export { users, Data, StudentCourses, Course }
