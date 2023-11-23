@@ -9,6 +9,7 @@ type Course = {
   id: number,
   title: string;
   date: Date;
+  students: users[];
 }
 
 type StudentCourses = {

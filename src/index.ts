@@ -21,7 +21,11 @@ const validateSchema = (schema: any) => async (req: Request, res: Response, next
   }
 }
 
+app.get('/', (req, res) => {
+  res.status(200).send({ message: 'Vous êtes connecté!' });
+});
 
+// Create a new user
 app.post('/users', validateSchema(createUserSchema), async (req, res) => {
   const user = req.body    
 
@@ -42,8 +46,6 @@ app.post('/users', validateSchema(createUserSchema), async (req, res) => {
     res.status(500).json({ error: 'Database error' })
   }
 })
-
-
 
 // Create a new course
 app.post('/courses', async (req: Request, res: Response) => {
@@ -69,6 +71,15 @@ app.post('/courses', async (req: Request, res: Response) => {
 
   res.json({ id })
 })
+
+// Get all courses
+app.get('/courses', async (req: Request, res: Response) => {
+  // Load data from db.json into db.data
+  await db.read()
+
+  res.json(db.data.courses)
+})
+
 
 app.post('/courses/:id/students', async (req: Request, res: Response) => {
   const courseId = req.params.id
